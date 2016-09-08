@@ -22,19 +22,19 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 }));
 
 // Home page.
-app.get("/", function(req, res) {
+app.get('/', function (req, res) {
   var products = getProducts();
   res.render('index', {totalProducts: products.length});
 });
 
 // CREATE
-app.get("/products/new", function(req, res) {
+app.get('/products/new', function(req, res) {
   res.render('product_new');
 });
 
-app.post("/products", function(req, res) {
+app.post('/products', function (req, res) {
   // generate a new id and create the whole product.
-  var id = "ZX0000" + products.length;
+  var id = 'ZX0000' + products.length;
   var product = {
     id: id,
     name: req.body.name,
@@ -48,24 +48,24 @@ app.post("/products", function(req, res) {
 });
 
 // READ
-app.get("/products", function(req, res) {
+app.get('/products', function (req, res) {
   var products = getProducts();
   res.render('products_all', {products: products});
 });
 
-app.get("/products/:id", function(req, res) {
+app.get('/products/:id', function (req, res) {
   var product = getProduct(req.params.id);
   res.render('product_detail', {product: product});
 });
 
 // UPDATE (get an HTML page where user fills values in)
-app.get("/products/:id/edit", function(req, res) {
+app.get('/products/:id/edit', function (req, res) {
   var product = getProduct(req.params.id);
   res.render('product_edit', {product: product});
 });
 
 // UPDATE (this route accept info from the HTML form)
-app.put("/products/:id", function(req, res) {
+app.put('/products/:id', function (req, res) {
   var product = getProduct(req.params.id);
   product.id = req.params.id;
   product.name = req.body.name;
@@ -77,13 +77,13 @@ app.put("/products/:id", function(req, res) {
   res.redirect('/products/' + product.id);
 });
 
-app.delete("/products/:id", function(req, res) {
-  console.log("DELETE", req.params.id);
+app.delete('/products/:id', function (req, res) {
+  console.log('DELETE', req.params.id);
   deleteProduct(req.params.id);
-  res.redirect("/products");
+  res.redirect('/products');
 });
 
-console.log("You're listening to the smooth smooth sounds of http://localhost:3000");
+console.log('You\'re listening to the smooth smooth sounds of http://localhost:3000');
 app.listen(3000);
 
 function getProducts() {
@@ -129,7 +129,7 @@ function createProduct(newProduct) {
 }
 
 function deleteProduct(id) {
-  console.log("delete", id);
+  console.log('delete', id);
   var products = getProducts();
   products = products.filter(function(product) {
     // only keep products that don't have the id of the
