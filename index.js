@@ -39,7 +39,8 @@ app.post('/products', function (req, res) {
     id: id,
     name: req.body.name,
     price: req.body.price,
-    description: req.body.description
+    description: req.body.description,
+    quantity: req.body.quantity
   };
 
   createProduct(product);
@@ -71,6 +72,7 @@ app.put('/products/:id', function (req, res) {
   product.name = req.body.name;
   product.price = req.body.price;
   product.description = req.body.description;
+  product.quantity = req.body.quantity;
 
   editProduct(product);
 
